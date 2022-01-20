@@ -1,0 +1,78 @@
+{
+    "contraCheque": [
+        {
+            "idContraCheque": "mpms/06/2019/1",
+            "chaveColeta": "mpms/06/2019",
+            "nome": "ANTONIO SIUFI NETO",
+            "matricula": "8000247",
+            "funcao": "PROCURADOR DE JUSTIÇA",
+            "localTrabalho": "COLÉGIO DE PROCURADORES",
+            "ativo": true,
+            "remuneracoes": {
+                "remuneracao": [
+                    {
+                        "categoria": "contracheque_2018",
+                        "item": "Remuneração do Cargo Efetivo ",
+                        "valor": 35462.22
+                    },
+                    {
+                        "categoria": "contracheque_2018",
+                        "item": "Outras Verbas Remuneratórias, Legais ou Judiciais",
+                        "tipoReceita": "O"
+                    },
+                    {
+                        "categoria": "contracheque_2018",
+                        "item": "Função de Confiança ou Cargo em Comissão",
+                        "valor": 6792.79,
+                        "tipoReceita": "O"
+                    },
+                    {
+                        "categoria": "contracheque_2018",
+                        "item": "Gratificação Natalina",
+                        "tipoReceita": "O"
+                    },
+                    {
+                        "categoria": "contracheque_2018",
+                        "item": "Férias (constitucional)",
+                        "valor": 28366.93,
+                        "tipoReceita": "O"
+                    },
+                    {
+                        "categoria": "contracheque_2018",
+                        "item": "Abono de Permanência",
+                        "tipoReceita": "O"
+                    },
+                    {
+                        "categoria": "contracheque_2018",
+                        "item": "Remunerações tempórarias",
+                        "tipoReceita": "O"
+                    },
+                    {
+                        "categoria": "contracheque_2018",
+                        "item": "Indenizações",
+                        "valor": 52678.97,
+                        "tipoReceita": "O"
+                    },
+                    {
+                        "natureza": "D",
+                        "categoria": "contracheque_2018",
+                        "item": "Contribuição Previdenciária",
+                        "valor": -4789.51
+                    },
+                    {
+                        "natureza": "D",
+                        "categoria": "contracheque_2018",
+                        "item": "Imposto de Renda",
+                        "valor": -13247.62
+                    },
+                    {
+                        "natureza": "D",
+                        "categoria": "contracheque_2018",
+                        "item": "Retenção por Teto Constitucional",
+                        "valor": -2961.69
+                    }
+                ]
+            }
+        }
+    ]
+}
