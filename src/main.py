@@ -67,8 +67,7 @@ def parse_execution(data, file_names):
 
 # Main execution
 def main():
-    # file_names = [f.rstrip() for f in sys.stdin.readlines()]
-    file_names = ["output/membros-ativos-contracheque-11-2020.xlsx", "output/membros-ativos-verbas-indenizatorias-11-2020.xlsx"]
+    file_names = [f.rstrip() for f in sys.stdin.readlines()]
     
     dados = data.load(file_names, year, month, output_path)
     dados.validate()  # Se não acontecer nada, é porque está tudo ok!
@@ -78,3 +77,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
