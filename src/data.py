@@ -61,7 +61,7 @@ class Data:
             or os.path.isfile(
                 f"{self.output_path}/membros-ativos-verbas-indenizatorias-{self.month}-{self.year}.xlsx"
             )
-        ):
+        ) or (len(self.contracheque == 2) or len(self.indenizatorias)==2):
             sys.stderr.write(f"Não existe planilhas para {self.month}/{self.year}.")
             sys.exit(STATUS_DATA_UNAVAILABLE)
 
