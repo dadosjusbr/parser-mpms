@@ -63,7 +63,7 @@ class Data:
                 f"{self.output_path}/membros-ativos-verbas-indenizatorias-{self.month}-{self.year}.xlsx"
             )
         #Quando uma planilha sem dados é baixada, ela possui sempre duas linhas (com dados NaN e decimais iguais a 0.00).
-          or (len(self.contracheque == 2) or len(self.indenizatorias)==2)):
+           or (len(self.contracheque == 2) or len(self.indenizatorias)==2)):
             sys.stderr.write(f"Não existe planilhas para {self.month}/{self.year}.")
             sys.exit(STATUS_DATA_UNAVAILABLE)
 
