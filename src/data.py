@@ -20,7 +20,7 @@ def _read(file):
 
 def load(file_names, year, month, output_path):
     """Carrega os arquivos passados como parâmetros.
-    
+
      :param file_names: slice contendo os arquivos baixados pelo coletor.
     Os nomes dos arquivos devem seguir uma convenção e começar com 
     Membros ativos-contracheque e Membros ativos-Verbas Indenizatorias
@@ -29,13 +29,14 @@ def load(file_names, year, month, output_path):
     """
 
     contracheque = _read([c for c in file_names if "contracheque" in c][0])
-    
-    if(int(year) == 2018 or (int(year) == 2019 and int(month)<=6)):
+
+    if(int(year) == 2018 or (int(year) == 2019 and int(month) <= 6)):
         return Data_2018(contracheque, year, month, output_path)
 
     indenizatorias = _read([i for i in file_names if "indenizatorias" in i][0])
 
     return Data(contracheque, indenizatorias, year, month, output_path)
+
 
 class Data:
     def __init__(self, contracheque, indenizatorias, year, month, output_path):
@@ -44,7 +45,6 @@ class Data:
         self.output_path = output_path
         self.contracheque = contracheque
         self.indenizatorias = indenizatorias
-        
 
     def validate(self):
         """
@@ -62,10 +62,12 @@ class Data:
             or os.path.isfile(
                 f"{self.output_path}/membros-ativos-verbas-indenizatorias-{self.month}-{self.year}.xlsx"
             )
-        #Quando uma planilha sem dados é baixada, ela possui sempre duas linhas (com dados NaN e decimais iguais a 0.00).
-           or (len(self.contracheque == 2) or len(self.indenizatorias)==2)):
-            sys.stderr.write(f"Não existe planilhas para {self.month}/{self.year}.")
+            # Quando uma planilha sem dados é baixada, ela possui sempre duas linhas (com dados NaN e decimais iguais a 0.00).
+           or (len(self.contracheque == 2) or len(self.indenizatorias) == 2)):
+            sys.stderr.write(
+                f"Não existe planilhas para {self.month}/{self.year}.")
             sys.exit(STATUS_DATA_UNAVAILABLE)
+
 
 class Data_2018:
     def __init__(self, contracheque, year, month, output_path):
@@ -84,7 +86,8 @@ class Data_2018:
         """
 
         if not os.path.isfile(
-                f"{self.output_path}/membros-ativos-contracheque-{self.month}-{self.year}.xlsx"
-            ):
-            sys.stderr.write(f"Não existe planilha para {self.month}/{self.year}.")
+            f"{self.output_path}/membros-ativos-contracheque-{self.month}-{self.year}.xlsx"
+        ):
+            sys.stderr.write(
+                f"Não existe planilha para {self.month}/{self.year}.")
             sys.exit(STATUS_DATA_UNAVAILABLE)
