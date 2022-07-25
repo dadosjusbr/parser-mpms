@@ -51,7 +51,7 @@ def cria_remuneracao(row, categoria):
         remuneracao.valor = float(abs(number.format_value(row[value])))
 
         if (categoria == CONTRACHEQUE or categoria == CONTRACHEQUE_2018) and value in [13, 14, 15]:
-            remuneracao.valor = abs(remuneracao.valor)
+            remuneracao.valor = remuneracao.valor * (-1)
             remuneracao.natureza = Coleta.Remuneracao.Natureza.Value("D")
         else: 
             remuneracao.tipo_receita = Coleta.Remuneracao.TipoReceita.Value("O")

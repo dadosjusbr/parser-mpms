@@ -12,8 +12,8 @@ class TestData(unittest.TestCase):
     def test_validate_existence(self):
         STATUS_DATA_UNAVAILABLE = 4
         with self.assertRaises(SystemExit) as cm:
-            dados = load(file_names, "2021", "02", "src/output_test") # Mês alterado para simular erro
-            dados.validate()
+            dados = load(file_names, "2021", "02", "src/output_test/sheets") # Mês alterado para simular erro
+            dados.validate("src/output_test/sheets")
         self.assertEqual(cm.exception.code, STATUS_DATA_UNAVAILABLE)
 
 
