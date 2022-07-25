@@ -76,7 +76,7 @@ class Data_2018:
         self.output_path = output_path
         self.contracheque = contracheque
 
-    def validate(self):
+    def validate(self, output_path):
         """
          Validação inicial dos arquivos passados como parâmetros.
         Aborta a execução do script em caso de erro.
@@ -86,7 +86,7 @@ class Data_2018:
         """
 
         if not os.path.isfile(
-            f"{self.output_path}/membros-ativos-contracheque-{self.month}-{self.year}.xlsx"
+            f"{output_path}/membros-ativos-contracheque-{self.month}-{self.year}.xlsx"
         ):
             sys.stderr.write(
                 f"Não existe planilha para {self.month}/{self.year}.")

@@ -14,7 +14,7 @@ def parse_employees(fn, chave_coleta, categoria):
     counter = 1
     for row in fn:
         if not number.is_nan(row[0]):
-            if row[0] == "TOTAL GERAL":
+            if row[0] == "TOTAL GERAL" or row[0] == "Total":
                 break
             else:
                 matricula = row[0]
