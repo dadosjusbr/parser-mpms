@@ -70,7 +70,7 @@ def main():
     file_names = [f.rstrip() for f in sys.stdin.readlines()]
     
     dados = data.load(file_names, year, month, output_path)
-    dados.validate()  # Se não acontecer nada, é porque está tudo ok!
+    dados.validate(output_path)  # Se não acontecer nada, é porque está tudo ok!
 
     parse_execution(dados, file_names)
 
