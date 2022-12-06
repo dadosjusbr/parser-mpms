@@ -30,9 +30,23 @@ else:
     output_path = "/output"
 
 if "GIT_COMMIT" in os.environ:
-    crawler_version = os.environ["GIT_COMMIT"]
+    PARSER_VERSION = os.environ["GIT_COMMIT"]
 else:
-    crawler_version = "unspecified"
+    PARSER_VERSION = "unspecified"
+
+# Pegando o ID do último commit do coletor
+headers = {
+    'Accept': 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28',
+}
+response = requests.get(
+    'https://api.github.com/repos/dadosjusbr/coletor-mpms/commits', headers=headers)
+
+if response.status_code == 200:
+    response = response.json()
+    CRAWLER_VERSION = response[0]["sha"]
+else:
+    CRAWLER_VERSION = "unspecified"
 
 
 def parse_execution(data, file_names):
@@ -43,9 +57,9 @@ def parse_execution(data, file_names):
     coleta.mes = int(month)
     coleta.ano = int(year)
     coleta.repositorio_coletor = "https://github.com/dadosjusbr/coletor-mpms"
-    coleta.versao_coletor = crawler_version
+    coleta.versao_coletor = CRAWLER_VERSION
     coleta.repositorio_parser = "https://github.com/dadosjusbr/parser-mpms"
-    coleta.versao_parser = "unspecified"
+    coleta.versao_parser = PARSER_VERSION
     coleta.arquivos.extend(file_names)
     timestamp = Timestamp()
     timestamp.GetCurrentTime()
@@ -70,13 +84,13 @@ def parse_execution(data, file_names):
 # Main execution
 def main():
     file_names = [f.rstrip() for f in sys.stdin.readlines()]
-    
+
     dados = data.load(file_names, year, month, output_path)
-    dados.validate(output_path)  # Se não acontecer nada, é porque está tudo ok!
+    # Se não acontecer nada, é porque está tudo ok!
+    dados.validate(output_path)
 
     parse_execution(dados, file_names)
 
 
 if __name__ == "__main__":
     main()
-    
