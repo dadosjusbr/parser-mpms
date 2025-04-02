@@ -35,7 +35,7 @@ def parse_employees(fn, chave_coleta, categoria):
                         cria_remuneracao(row, categoria)
                     )
 
-                    employees[matricula] = membro
+                    employees[str(matricula)] = membro
                     counter += 1
 
     return employees
@@ -76,7 +76,7 @@ def cria_remuneracao(row, categoria):
 
 def update_employees(fn, employees, categoria):
     for row in fn:
-        matricula = row[0]
+        matricula = str(row[0])
         if matricula in employees.keys():
             emp = employees[matricula]
             remu = cria_remuneracao(row, categoria)
