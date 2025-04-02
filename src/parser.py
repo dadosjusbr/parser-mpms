@@ -93,7 +93,7 @@ def parse(data, chave_coleta, month, year):
         # Puts all parsed employees in the big map
         employees.update(parse_employees(data.contracheque,
                          chave_coleta, CONTRACHEQUE_2018))
-    if(int(year) >= 2022):
+    elif(int(year) >= 2022):
         employees.update(parse_employees(data.contracheque,
                          chave_coleta, CONTRACHEQUE_2022))
         update_employees(data.indenizatorias, employees, INDENIZACOES_2022)
