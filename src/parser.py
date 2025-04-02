@@ -76,7 +76,7 @@ def cria_remuneracao(row, categoria):
 
 def update_employees(fn, employees, categoria):
     for row in fn:
-        matricula = str(row[0])
+        matricula = row[0]
         if matricula in employees.keys():
             emp = employees[matricula]
             remu = cria_remuneracao(row, categoria)
