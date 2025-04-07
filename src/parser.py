@@ -4,8 +4,7 @@ import os
 
 from coleta import coleta_pb2 as Coleta
 
-from headers_keys import (CONTRACHEQUE, CONTRACHEQUE_2018,
-                          INDENIZACOES, HEADERS)
+from headers_keys import *
 import number
 
 
@@ -36,7 +35,7 @@ def parse_employees(fn, chave_coleta, categoria):
                         cria_remuneracao(row, categoria)
                     )
 
-                    employees[matricula] = membro
+                    employees[str(matricula)] = membro
                     counter += 1
 
     return employees
@@ -57,12 +56,15 @@ def cria_remuneracao(row, categoria):
         if (categoria == CONTRACHEQUE or categoria == CONTRACHEQUE_2018) and value in [13, 14, 15]:
             remuneracao.valor = remuneracao.valor * (-1)
             remuneracao.natureza = Coleta.Remuneracao.Natureza.Value("D")
+        elif (categoria == CONTRACHEQUE_2022) and value in [11, 12, 13]:
+            remuneracao.valor = remuneracao.valor * (-1)
+            remuneracao.natureza = Coleta.Remuneracao.Natureza.Value("D")
         else:
             remuneracao.tipo_receita = Coleta.Remuneracao.TipoReceita.Value(
                 "O")
 
         if (
-            categoria == CONTRACHEQUE or categoria == CONTRACHEQUE_2018
+            categoria == CONTRACHEQUE or categoria == CONTRACHEQUE_2018 or categoria == CONTRACHEQUE_2022
         ) and value in [4]:
             remuneracao.tipo_receita = Coleta.Remuneracao.TipoReceita.Value(
                 "B")
@@ -91,6 +93,10 @@ def parse(data, chave_coleta, month, year):
         # Puts all parsed employees in the big map
         employees.update(parse_employees(data.contracheque,
                          chave_coleta, CONTRACHEQUE_2018))
+    elif(int(year) >= 2022):
+        employees.update(parse_employees(data.contracheque,
+                         chave_coleta, CONTRACHEQUE_2022))
+        update_employees(data.indenizatorias, employees, INDENIZACOES_2022)
     else:
         employees.update(parse_employees(
             data.contracheque, chave_coleta, CONTRACHEQUE))
